@@ -20,6 +20,7 @@ const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5174",
   "https://ecommerce-fs-admin.vercel.app",
+  "https://ecommerce-fs-backend.vercel.app",
 ];
 
 const corsOptions = {
