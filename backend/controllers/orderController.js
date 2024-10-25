@@ -127,8 +127,8 @@ const allOrders = async (req, res) => {
 
     res.json({ success: true, orders });
   } catch (error) {
-    console.log(error);
-    res.json({ success: false, message: error.message });
+    console.error("Error fetching orders:", error); // More descriptive error log
+    res.status(500).json({ success: false, message: error.message });
   }
 };
 

@@ -18,7 +18,8 @@ connectCloudinary();
 const allowedOrigins = [
   "https://ecommerce-fs-frontend.vercel.app",
   "http://localhost:5173",
-  "https://ecommerce-fs-admin.vercel.app" 
+  "http://localhost:5174",
+  "https://ecommerce-fs-admin.vercel.app",
 ];
 
 const corsOptions = {
@@ -30,11 +31,10 @@ const corsOptions = {
     }
   },
   methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization","token"],
+  allowedHeaders: ["Content-Type", "Authorization", "token"],
 };
 
 app.use(cors(corsOptions));
-
 
 // Middlewares
 app.use(express.json());
