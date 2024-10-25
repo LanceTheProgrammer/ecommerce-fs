@@ -14,16 +14,24 @@ const port = process.env.PORT || 4000;
 connectDB();
 connectCloudinary();
 
-// middlewares
-app.use(express.json());
-app.use(cors());
+// Configure CORS to allow frontend access
+const corsOptions = {
+  origin: "https://ecommerce-fs-frontend.vercel.app",  // Allow requests from the frontend domain
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+app.use(cors(corsOptions));
 
-// api endpoints
+// Middlewares
+app.use(express.json());
+
+// API endpoints
 app.use("/api/user", userRouter);
 app.use("/api/product", productRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/order", orderRouter);
 
+// Test endpoint
 app.get("/", (req, res) => {
   res.send("API Working");
 });
