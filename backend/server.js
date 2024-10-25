@@ -15,12 +15,25 @@ connectDB();
 connectCloudinary();
 
 // Configure CORS to allow frontend access
+const allowedOrigins = [
+  "https://ecommerce-fs-frontend.vercel.app",
+  "http://localhost:5173", // Allow local development
+];
+
 const corsOptions = {
-  origin: "https://ecommerce-fs-frontend.vercel.app",  // Allow requests from the frontend domain
+  origin: (origin, callback) => {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true); // Allow the request
+    } else {
+      callback(new Error("Not allowed by CORS")); // Reject the request
+    }
+  },
   methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  allowedHeaders: ["Content-Type", "Authorization","token"],
 };
+
 app.use(cors(corsOptions));
+
 
 // Middlewares
 app.use(express.json());
